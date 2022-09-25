@@ -15,7 +15,7 @@ compiler:
   version: "0.8.0"
 # automatically fetch contract sources from Etherscan
 autofetch_sources: True
-dotenv: .env
+dotenv: ../.env
 # set a custom mnemonic for the development network
 networks:
   default: development

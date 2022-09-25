@@ -10,7 +10,11 @@ import subprocess
 from dotenv import load_dotenv
 import os
 
-load_dotenv("../.env")
+try:
+    load_dotenv("../.env")
+except Exception as e:
+    print('no .env file found, loading placeholders')
+    load_dotenv("../.placeholderenv")
 
 def mp3_to_numpy(dir, f, normalized=False):
     """MP3 to numpy array"""
@@ -32,8 +36,11 @@ def generate_waveform(dir, f):
     ax.axis("off")
     # set square canvas
     fig.set_size_inches(42, 42)
-    # plot waveform in black and white
-    ax.plot(data, color="k")
+    # add background image to canvas @hugo
+    background = plt.imread("media/goldtexture.jpg")
+    background = ax.imshow(background, extent=[0, 1200, 0, 1200])
+    # plot waveform in dark brown  @hugo (previously was black color='k')
+    ax.plot(data, color="#4d2a03")
     # save the figure
     utcnow = datetime.datetime.utcnow()
     img_name = "waveform.png"
@@ -148,11 +155,11 @@ def create_nft(dir, audio_file, to_address):
     return tx_hash, token_id, img_uri, sound_uri
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    # test call
-    dir = "uploads/5/"
-    sound_file = "audio.mp3"
-    to_address = "0x6B3751c5b04Aa818EA90115AA06a4D9A36A16f02"
-    tx, id = create_nft(dir, sound_file, to_address)
-    print(f"tx, id: {tx}, {id}")
+#     # test call
+#     dir = "uploads/5/"
+#     sound_file = "audio.mp3"
+#     to_address = "0x6B3751c5b04Aa818EA90115AA06a4D9A36A16f02"
+#     tx, id = create_nft(dir, sound_file, to_address)
+#     print(f"tx, id: {tx}, {id}")
