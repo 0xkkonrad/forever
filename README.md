@@ -1,6 +1,10 @@
 # endless
 Jewelry forever.
 
+A simple, elegant, multi-realm item that exists both in the physical world and the digital world. Currently on Mumbai testnet, release soon once designs are finalized.
+
+Get in touch if you have any feedback or want to work with us! hugo [at] prophet.money / konrad [at] prophet.money
+
 
 <br>
 <br>
@@ -53,20 +57,3 @@ cd src
 npm run yeet-it
 ```
 ⬆️ This says fuck it, builds the css, adds all files to a git commit, and pushes to github.
-
-
-## TODO
-
-- [ ] add waitlist
-- [ ] payment
-    - [ ] stripe
-    - [ ] paypal
-    - [ ] Ethereum
-
-
-## konrad's question
-* auto-refresh doesn't work anymore :(((( whyyyyyyyyyy
-
-# Known Issues (will be fixed at some point)
-* After connecting to MetaMask, there is no refresh
-* 

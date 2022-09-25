@@ -61,14 +61,27 @@ function checkWalletConnected() {
                     }
                 });
         });
-    } else if (window.web3) {
-        window.web3 = new Web3(window.web3.currentProvider);
-        Alpine.store('connected', true);
-        // Force update of the modal
-        Alpine.store('updateModal', Alpine.store('updateModal') + 1);
+        // switch to matic testnet (mumbai)
+        window.ethereum.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: '0x13881' }], // chainId must be in hexadecimal numbers
+        }).then((success) => {
+            console.log(success);
+        }).catch((error) => {
+            console.log(error);
+        });
     } else {
-        Alpine.store('connected', false);
+        console.log('MetaMask is not installed');
+        window.alert('Please install MetaMask first.');
     }
+    // } else if (window.web3) {
+    //     window.web3 = new Web3(window.web3.currentProvider);
+    //     Alpine.store('connected', true);
+    //     // Force update of the modal
+    //     Alpine.store('updateModal', Alpine.store('updateModal') + 1);
+    // } else {
+    //     Alpine.store('connected', false);
+    // }
 }
 
 function proceedToCheckout() {
@@ -82,6 +95,46 @@ function makePaymentRequest() {
     // Make request to create payment request
     Alpine.store('checkoutStep', false);
     Alpine.store('processingPayment', true);
+    // switch to matic testnet (mumbai)
+    window.ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: '0x13881' }], // chainId must be in hexadecimal numbers
+    }).then((success) => {
+        console.log(success);
+    }).catch((error) => {
+        // add matic testnet (mumbai) to metamask
+        window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [{
+                chainId: '0x13881',
+                chainName: 'Matic Testnet Mumbai',
+                nativeCurrency: {
+                    name: 'Matic',
+                    symbol: 'MATIC',
+                    decimals: 18,
+                },
+                rpcUrls: ['https://rpc-mumbai.maticvigil.com/'],
+                blockExplorerUrls: ['https://mumbai.polygonscan.com/'],
+            }],
+        }).then((success) => {
+            console.log(success);
+            // switch to matic testnet (mumbai)
+            window.ethereum.request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId: '0x13881' }], // chainId must be in hexadecimal numbers
+            }).then((success) => {
+                console.log(success);
+            }
+            ).catch((error) => {
+                console.log(error);
+            }
+            );
+        }
+        ).catch((error) => {
+            console.log(error);
+        }
+        );
+    });
     // Start wallet payment process
     window.ethereum.request({ method: 'eth_sendTransaction', params: [{ from: Alpine.store('buyerAddress'), to: sellerAddress, value: itemPriceInWei }] })
         .then(response => {
