@@ -15,7 +15,7 @@ Record a voice message and get 3 things:
 
 
 ## 💡 Inspiration
-Future-proof storage and the tamper-free nature of the blockchain. Despite being technical terms, the ideas of eternity and immutability have been with us since the dawn of civilisation. 
+Future-proof storage and the tamper-free nature of the blockchain. Despite being technical terms, the ideas of eternity and immutability have been with us since the dawn of civilisation.  
 
 These are also key concepts of love, whether it's affectionate, familiar, brotherly, or romantic love. To express it to family, a friend, or a romantic partner in an eternal and immutable way seems very valuable.
 
