@@ -1,10 +1,22 @@
+### CUSTOM IGNORES
+## SECRETS (DON'T TOUCH THIS)
+secrets.json
+.env
+# contracts/
+build.css
+
+# random stuff
+.vscode
+
+# node stuff
+npmrc
+npm-debug.log
+.npmrc
 node_modules
-.DS_Store
-dist
-dist-ssr
-*.local
 
 
+
+### PYTHON STUFF 
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -16,7 +28,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-# build/
+build/
 develop-eggs/
 dist/
 downloads/
